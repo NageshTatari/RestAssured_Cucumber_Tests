@@ -1,0 +1,11 @@
+#!groovy
+
+node("build") {
+	ansiColor('xterm') {
+		deleteDir()
+		checkout scm
+		def stages = load "build/stages.groovy"
+
+		stages.doDeploymentTest("qa")
+	}
+}
